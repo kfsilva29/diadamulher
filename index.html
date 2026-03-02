@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Feliz Dia da Mulher ❤️</title>
+
+<style>
+body {
+    margin: 0;
+    padding: 0;
+    font-family: Arial, sans-serif;
+    text-align: center;
+    background: linear-gradient(-45deg, #ff9a9e, #fad0c4, #fbc2eb, #a6c1ee);
+    background-size: 400% 400%;
+    animation: gradient 10s ease infinite;
+    overflow-x: hidden;
+}
+
+@keyframes gradient {
+    0% {background-position: 0% 50%;}
+    50% {background-position: 100% 50%;}
+    100% {background-position: 0% 50%;}
+}
+
+.container {
+    padding: 50px 20px;
+}
+
+h1 {
+    font-size: 2.5em;
+    color: white;
+}
+
+button {
+    padding: 15px 30px;
+    font-size: 18px;
+    border: none;
+    border-radius: 30px;
+    background: white;
+    color: #ff4b8b;
+    cursor: pointer;
+    transition: 0.3s;
+}
+
+button:hover {
+    transform: scale(1.1);
+}
+
+.hidden {
+    display: none;
+}
+
+.texto {
+    font-size: 20px;
+    color: white;
+    max-width: 600px;
+    margin: auto;
+    margin-top: 20px;
+}
+
+#contador {
+    font-size: 18px;
+    margin-top: 20px;
+    color: white;
+}
+
+.coracao {
+    position: fixed;
+    top: -10px;
+    font-size: 20px;
+    animation: cair linear infinite;
+}
+
+@keyframes cair {
+    to {
+        transform: translateY(100vh);
+    }
+}
+</style>
+</head>
+
+<body>
+
+<div class="container">
+    <h1>Feliz Dia da Mulher ❤️</h1>
+    <button onclick="mostrarMensagem()">Clique aqui 💖</button>
+
+    <div id="mensagem" class="hidden">
+        <div class="texto">
+            Você é a mulher mais incrível que existe.  
+            Forte, linda, determinada e dona do meu coração.  
+            Obrigado por existir e por fazer minha vida mais feliz todos os dias. 💕
+        </div>
+
+        <div id="contador"></div>
+
+        <button onclick="tocarMusica()">Tocar Música 🎵</button>
+    </div>
+</div>
+
+<audio id="musica">
+    <source src="https://www.soundhelix.com/examples/mp3/SoundHelix-Song-1.mp3" type="audio/mp3">
+</audio>
+
+<script>
+function mostrarMensagem() {
+    document.getElementById("mensagem").classList.remove("hidden");
+    iniciarContador();
+    criarCoracoes();
+}
+
+function tocarMusica() {
+    document.getElementById("musica").play();
+}
+
+function iniciarContador() {
+    const inicio = new Date("2023-01-01"); // ALTERAR DATA
+    const agora = new Date();
+    const diff = agora - inicio;
+
+    const dias = Math.floor(diff / (1000 * 60 * 60 * 24));
+    document.getElementById("contador").innerHTML =
+        "Estamos juntos há " + dias + " dias ❤️";
+}
+
+function criarCoracoes() {
+    setInterval(() => {
+        const coracao = document.createElement("div");
+        coracao.classList.add("coracao");
+        coracao.innerHTML = "💖";
+        coracao.style.left = Math.random() * 100 + "vw";
+        coracao.style.animationDuration = (Math.random() * 3 + 2) + "s";
+        document.body.appendChild(coracao);
+
+        setTimeout(() => {
+            coracao.remove();
+        }, 5000);
+    }, 300);
+}
+</script>
+
+</body>
+</html>
