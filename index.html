@@ -3,142 +3,69 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Feliz Dia da Mulher ❤️</title>
-
+<title>Página de Login</title>
 <style>
 body {
-    margin: 0;
-    padding: 0;
     font-family: Arial, sans-serif;
-    text-align: center;
-    background: linear-gradient(-45deg, #ff9a9e, #fad0c4, #fbc2eb, #a6c1ee);
-    background-size: 400% 400%;
-    animation: gradient 10s ease infinite;
-    overflow-x: hidden;
+    background: linear-gradient(135deg, #ff9a9e, #fad0c4);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
 }
-
-@keyframes gradient {
-    0% {background-position: 0% 50%;}
-    50% {background-position: 100% 50%;}
-    100% {background-position: 0% 50%;}
-}
-
-.container {
-    padding: 50px 20px;
-}
-
-h1 {
-    font-size: 2.5em;
-    color: white;
-}
-
-button {
-    padding: 15px 30px;
-    font-size: 18px;
-    border: none;
-    border-radius: 30px;
+.login-container {
     background: white;
-    color: #ff4b8b;
+    padding: 30px;
+    border-radius: 10px;
+    box-shadow: 0 0 15px rgba(0,0,0,0.2);
+    text-align: center;
+    width: 300px;
+}
+input {
+    width: 100%;
+    padding: 10px;
+    margin: 10px 0;
+    border-radius: 5px;
+    border: 1px solid #ccc;
+}
+button {
+    width: 100%;
+    padding: 10px;
+    background: #ff4b8b;
+    color: white;
+    border: none;
+    border-radius: 5px;
     cursor: pointer;
-    transition: 0.3s;
 }
-
 button:hover {
-    transform: scale(1.1);
+    background: #e63a75;
 }
-
-.hidden {
-    display: none;
-}
-
-.texto {
-    font-size: 20px;
-    color: white;
-    max-width: 600px;
-    margin: auto;
-    margin-top: 20px;
-}
-
-#contador {
-    font-size: 18px;
-    margin-top: 20px;
-    color: white;
-}
-
-.coracao {
-    position: fixed;
-    top: -10px;
-    font-size: 20px;
-    animation: cair linear infinite;
-}
-
-@keyframes cair {
-    to {
-        transform: translateY(100vh);
-    }
+#mensagem {
+    margin-top: 15px;
+    font-weight: bold;
 }
 </style>
 </head>
-
 <body>
-
-<div class="container">
-    <h1>Feliz Dia da Mulher ❤️</h1>
-    <button onclick="mostrarMensagem()">Clique aqui 💖</button>
-
-    <div id="mensagem" class="hidden">
-        <div class="texto">
-            Você é a mulher mais incrível que existe.  
-            Forte, linda, determinada e dona do meu coração.  
-            Obrigado por existir e por fazer minha vida mais feliz todos os dias. 💕
-        </div>
-
-        <div id="contador"></div>
-
-        <button onclick="tocarMusica()">Tocar Música 🎵</button>
-    </div>
+<div class="login-container">
+    <h2>Login</h2>
+    <input type="text" id="usuario" placeholder="Usuário">
+    <input type="password" id="senha" placeholder="Senha">
+    <button onclick="login()">Entrar</button>
+    <p id="mensagem"></p>
 </div>
 
-<audio id="musica">
-    <source src="https://www.soundhelix.com/examples/mp3/SoundHelix-Song-1.mp3" type="audio/mp3">
-</audio>
-
 <script>
-function mostrarMensagem() {
-    document.getElementById("mensagem").classList.remove("hidden");
-    iniciarContador();
-    criarCoracoes();
-}
+function login() {
+    const usuario = document.getElementById("usuario").value;
+    const senha = document.getElementById("senha").value;
 
-function tocarMusica() {
-    document.getElementById("musica").play();
-}
-
-function iniciarContador() {
-    const inicio = new Date("2023-01-01"); // ALTERAR DATA
-    const agora = new Date();
-    const diff = agora - inicio;
-
-    const dias = Math.floor(diff / (1000 * 60 * 60 * 24));
-    document.getElementById("contador").innerHTML =
-        "Estamos juntos há " + dias + " dias ❤️";
-}
-
-function criarCoracoes() {
-    setInterval(() => {
-        const coracao = document.createElement("div");
-        coracao.classList.add("coracao");
-        coracao.innerHTML = "💖";
-        coracao.style.left = Math.random() * 100 + "vw";
-        coracao.style.animationDuration = (Math.random() * 3 + 2) + "s";
-        document.body.appendChild(coracao);
-
-        setTimeout(() => {
-            coracao.remove();
-        }, 5000);
-    }, 300);
+    if(usuario === "Ketilly" && senha === "Amor") {
+        window.location.href = "homenagem.html";
+    } else {
+        document.getElementById("mensagem").innerText = "Usuário ou senha incorretos.";
+    }
 }
 </script>
-
 </body>
 </html>
